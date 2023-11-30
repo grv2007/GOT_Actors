@@ -2,13 +2,9 @@ package com.ps.data.usecase
 
 import com.ps.common.utils.Resource
 import com.ps.data.mapper.ActorDetailDomainModelMapper
-import com.ps.data.mapper.ActorsDomainModelMapper
 import com.ps.data.repository.ActorDetailRepository
-import com.ps.data.repository.ActorsRepository
 import com.ps.domain.model.ActorDetailModel
-import com.ps.domain.model.ActorsModel
 import com.ps.domain.usecase.GetActorDetailUseCase
-import com.ps.domain.usecase.GetActorsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

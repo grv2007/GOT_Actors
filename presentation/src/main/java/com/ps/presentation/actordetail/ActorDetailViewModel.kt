@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.ps.common.extensions.onFailure
 import com.ps.common.extensions.onSuccess
 import com.ps.domain.usecase.GetActorDetailUseCase
-import com.ps.domain.usecase.GetActorsUseCase
 import com.ps.presentation.view.MainIntent
 import com.ps.presentation.view.MainState
 import dagger.hilt.android.lifecycle.HiltViewModel

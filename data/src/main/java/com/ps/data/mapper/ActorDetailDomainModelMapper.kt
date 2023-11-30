@@ -16,7 +16,7 @@ class ActorDetailDomainModelMapper @Inject constructor() :
             fullName = actorDetailResponse.fullName,
             title = actorDetailResponse.title,
             family = actorDetailResponse.family,
-            imageUrl = actorDetailResponse.image
+            imageUrl = actorDetailResponse.imageUrl
         )
     }
 }
