@@ -12,6 +12,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -77,25 +80,25 @@ class ActorDetailFragment : Fragment() {
     @Composable
     fun DetailScreen(detail: ActorDetailModel) {
         Column(
-            modifier = Modifier.fillMaxWidth()
-                .background(
-                    colorResource(id = R.color.purple_100)
-                )
-                //.verticalScroll(rememberScrollState())
+            modifier = Modifier
+                .fillMaxWidth()
+                .verticalScroll(state = rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             val url = detail.imageUrl
             val painter = rememberImagePainter(data = url)
             Image(
                 painter = painter,
                 contentDescription = "Image ${detail.fullName}",
-                modifier = Modifier.fillMaxWidth(),
-                contentScale = ContentScale.FillWidth
+                modifier = Modifier.size(300.dp),
+                contentScale = ContentScale.FillBounds
             )
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 50.dp),
                 text = detail.fullName,
+                color = colorResource(id = R.color.white),
                 textAlign = TextAlign.Center,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold
@@ -109,9 +112,11 @@ class ActorDetailFragment : Fragment() {
 
     @Composable
     fun DetailRow(name: String, value: String) {
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 50.dp)) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 50.dp)
+        ) {
             Column(modifier = Modifier.weight(1F)) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
@@ -134,14 +139,12 @@ class ActorDetailFragment : Fragment() {
             }
         }
     }
+
     @Composable
     fun LoadingScreen() {
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    colorResource(id = R.color.purple_100)
-                ), contentAlignment = Alignment.Center
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
         ) {
             CircularProgressIndicator()
         }

@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/actorListFragment"
         android:name="com.ps.presentation.actorlist.ActorListFragment"
-        android:label="Actor List" >
+        android:label="Actors" >
         <action
             android:id="@+id/action_actorListFragment_to_actorDetailFragment"
             app:destination="@id/actorDetailFragment" />
@@ -15,5 +15,5 @@
     <fragment
         android:id="@+id/actorDetailFragment"
         android:name="com.ps.presentation.actordetail.ActorDetailFragment"
-        android:label="Actor Details" />
+        android:label="Details" />
 </navigation>

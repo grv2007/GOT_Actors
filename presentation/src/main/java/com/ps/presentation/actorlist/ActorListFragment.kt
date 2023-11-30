@@ -99,7 +99,7 @@ class ActorListFragment: Fragment() {
     fun IdleScreen(onButtonClick: () -> Unit) {
         Box(modifier = Modifier.fillMaxSize().paint(
             // Replace with your image id
-            painterResource(id = R.drawable.bg),
+            painterResource(id = R.drawable.splash_bg),
             contentScale = ContentScale.FillBounds),
             contentAlignment = Alignment.Center
         ) {
@@ -111,9 +111,8 @@ class ActorListFragment: Fragment() {
 
     @Composable
     fun LoadingScreen() {
-        Box(modifier = Modifier.fillMaxSize().background(
-            colorResource(id = R.color.purple_100)
-        ), contentAlignment = Alignment.Center) {
+        Box(modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center) {
             CircularProgressIndicator()
         }
     }
@@ -148,7 +147,7 @@ class ActorListFragment: Fragment() {
                 painter = painter,
                 contentDescription = "Image ${actor.fullName}",
                 modifier = Modifier.size(100.dp),
-                contentScale = ContentScale.FillHeight
+                contentScale = ContentScale.FillBounds
             )
             Column (modifier = Modifier
                 .fillMaxSize()
