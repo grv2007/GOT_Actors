@@ -1,8 +1,12 @@
 package com.ps.data.di
 
+import com.ps.data.mapper.ActorDetailDomainModelMapper
 import com.ps.data.mapper.ActorsDomainModelMapper
+import com.ps.data.repository.ActorDetailRepository
 import com.ps.data.repository.ActorsRepository
+import com.ps.data.usecase.GetActorDetailUseCaseImpl
 import com.ps.data.usecase.GetActorsUseCaseImpl
+import com.ps.domain.usecase.GetActorDetailUseCase
 import com.ps.domain.usecase.GetActorsUseCase
 import dagger.Module
 import dagger.Provides
@@ -21,5 +25,14 @@ object UseCaseModule {
     ): GetActorsUseCase = GetActorsUseCaseImpl(
         getActorsRepository,
         actorsDomainModelMapper,
+    )
+    @Singleton
+    @Provides
+    fun provideActorDetailUseCase(
+        getActorDetailRepository: ActorDetailRepository,
+        actorDetailDomainModelMapper: ActorDetailDomainModelMapper
+    ): GetActorDetailUseCase = GetActorDetailUseCaseImpl(
+        getActorDetailRepository,
+        actorDetailDomainModelMapper,
     )
 }

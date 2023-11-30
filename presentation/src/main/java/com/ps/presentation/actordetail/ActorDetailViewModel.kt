@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ps.common.extensions.onFailure
 import com.ps.common.extensions.onSuccess
+import com.ps.domain.usecase.GetActorDetailUseCase
 import com.ps.domain.usecase.GetActorsUseCase
 import com.ps.presentation.view.MainIntent
 import com.ps.presentation.view.MainState
@@ -15,8 +16,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
-    private val getActorsUseCase: GetActorsUseCase
+class ActorDetailViewModel @Inject constructor(
+    private val getActorDetailUseCase: GetActorDetailUseCase
 ) : ViewModel() {
 
     val userIntent = Channel<MainIntent>(Channel.UNLIMITED)
@@ -29,7 +30,9 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             userIntent.consumeAsFlow().collect{ collector ->
                 when(collector){
-                    MainIntent.FetchActors -> fetchActors()
+                   is MainIntent.FetchActorDetail -> fetchActorDetails(
+                        collector.id
+                    )
                     else -> {
                         // Do Nothing
                     }
@@ -39,10 +42,10 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun fetchActors() {
+    private fun fetchActorDetails(id: Int) {
         viewModelScope.launch {
             state.value = MainState.Loading
-            getActorsUseCase().onSuccess {
+            getActorDetailUseCase(id).onSuccess {
                 state.value = MainState.Success(it)
             }.onFailure {
                 MainState.Error(it.localizedMessage)

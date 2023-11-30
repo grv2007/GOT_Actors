@@ -1,12 +1,13 @@
-package com.ps.presentation
-
+package com.ps.presentation.actorlist
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.compose.setContent
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,79 +22,68 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.fragment.app.FragmentActivity
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.fragment.findNavController
 import coil.compose.rememberImagePainter
 import com.ps.domain.model.Actor
 import com.ps.domain.model.ActorsModel
-import com.ps.gotactors.view.MainViewModel
-import com.ps.presentation.databinding.ActivityMainBinding
-import com.ps.presentation.ui.theme.GOTActorsTheme
+import com.ps.gotactors.view.ActorListViewModel
+import com.ps.presentation.R
 import com.ps.presentation.view.MainIntent
 import com.ps.presentation.view.MainState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding: ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        val navHostFragment: NavHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController: NavController = navHostFragment.navController
-
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
+class ActorListFragment: Fragment() {
+    companion object {
+        val ID = "id"
     }
-}
-
-//@AndroidEntryPoint
-
-/*
-class MainActivity : FragmentActivity() {
-    private val mainViewModel: MainViewModel by viewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    private val viewModel: ActorListViewModel by viewModels()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val onButtonClick: () -> Unit = {
             lifecycleScope.launch {
-                mainViewModel.userIntent.send(MainIntent.FetchActors)
+                viewModel.userIntent.send(MainIntent.FetchActors)
             }
         }
-        setContent {
-            GOTActorsTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    MainScreen(vm = mainViewModel, onButtonClick = onButtonClick)
+
+        return ComposeView(requireContext()).apply {
+            // Dispose of the Composition when the view's LifecycleOwner
+            // is destroyed
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+                MaterialTheme {
+                    // In Compose world
+                    MainScreen(vm = viewModel, onButtonClick = onButtonClick)
                 }
             }
         }
     }
 
     @Composable
-    fun MainScreen(vm: MainViewModel, onButtonClick: () -> Unit) {
+    fun MainScreen(vm: ActorListViewModel, onButtonClick: () -> Unit) {
         when (val state = vm.state.value) {
             is MainState.Idle -> IdleScreen(onButtonClick = onButtonClick)
             is MainState.Loading -> LoadingScreen()
@@ -107,7 +97,12 @@ class MainActivity : FragmentActivity() {
 
     @Composable
     fun IdleScreen(onButtonClick: () -> Unit) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Box(modifier = Modifier.fillMaxSize().paint(
+            // Replace with your image id
+            painterResource(id = R.drawable.bg),
+            contentScale = ContentScale.FillBounds),
+            contentAlignment = Alignment.Center
+        ) {
             Button(onClick = onButtonClick) {
                 Text(text = "Fetch Actors")
             }
@@ -116,7 +111,9 @@ class MainActivity : FragmentActivity() {
 
     @Composable
     fun LoadingScreen() {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Box(modifier = Modifier.fillMaxSize().background(
+            colorResource(id = R.color.purple_100)
+        ), contentAlignment = Alignment.Center) {
             CircularProgressIndicator()
         }
     }
@@ -135,8 +132,15 @@ class MainActivity : FragmentActivity() {
     fun ActorItem(actor: Actor) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(100.dp),
+                .fillMaxWidth().background(
+                    colorResource(id = R.color.purple_100)
+                )
+                .height(100.dp).clickable {
+                    findNavController().navigate(
+                        R.id.action_actorListFragment_to_actorDetailFragment,
+                        bundleOf(ID to actor.id)
+                    )
+                },
         ) {
             val url = actor.imageUrl
             val painter = rememberImagePainter(data = url)
@@ -153,17 +157,15 @@ class MainActivity : FragmentActivity() {
                     modifier = Modifier.padding(top = 8.dp),
                     text = actor.fullName,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black,
+                    color = colorResource(id = R.color.black),
                     fontSize = 20.sp
                 )
                 Text(
                     modifier = Modifier.padding(top = 8.dp),
                     text = actor.family,
-                    color = Color.Gray
+                    color = colorResource(id = R.color.white)
                 )
             }
         }
     }
 }
-
- */

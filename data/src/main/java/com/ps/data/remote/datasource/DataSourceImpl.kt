@@ -11,4 +11,8 @@ internal class DataSourceImpl @Inject constructor(
     override suspend fun getActors(): Response<List<ActorResponse>> {
         return api.getActors()
     }
+
+    override suspend fun getActorDetail(id: Int): Response<ActorResponse> {
+        return api.getActorDetail(id)
+    }
 }
