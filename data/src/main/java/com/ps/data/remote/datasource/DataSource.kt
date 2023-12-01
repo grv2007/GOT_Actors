@@ -5,4 +5,5 @@ import retrofit2.Response
 
 interface DataSource {
     suspend fun getActors() : Response<List<ActorResponse>>
+    suspend fun getActorDetail(id: Int) : Response<ActorResponse>
 }

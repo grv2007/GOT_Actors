@@ -2,8 +2,9 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
-
 android {
     namespace = "com.ps.domain"
     compileSdk = 34
@@ -32,7 +33,9 @@ android {
         jvmTarget = "1.8"
     }
 }
-
+kotlin {
+    jvmToolchain(8)
+}
 dependencies {
     implementation(project( ":common"))
     implementation(libs.core.ktx)
@@ -41,4 +44,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

@@ -39,6 +39,7 @@ kotlin {
 dependencies {
     implementation(project( ":common"))
     implementation(project( ":domain"))
+
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -47,11 +48,10 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(libs.okhttp.logging.interceptor)
 
-    //
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 }
 
 // Allow references to generated code
