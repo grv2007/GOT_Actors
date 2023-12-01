@@ -1,6 +1,10 @@
 [versions]
 agp = "8.1.4"
+coil-compose = "2.4.0"
+extensions = "1.1.1"
 google-material = "1.10.0"
+hilt-android = "2.47"
+navigation-fragment-ktx = "2.7.5"
 org-jetbrains-kotlin-android = "1.8.10"
 core-ktx = "1.12.0"
 junit = "4.13.2"
@@ -12,9 +16,17 @@ compose-bom = "2023.10.01"
 appcompat = "1.6.1"
 material = "1.10.0"
 okhttp = "4.10.0"
+retrofit = "2.9.0"
 
 [libraries]
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation-fragment-ktx" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil-compose" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt-android" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt-android" }
+lifecycle_extensions = { module = "android.arch.lifecycle:extensions", version.ref = "extensions" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
@@ -22,6 +34,7 @@ lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtim
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 material-1_8_0 = { module = "com.google.android.material:material", version.ref = "google-material" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }

@@ -18,12 +18,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.annotation.ExperimentalCoilApi
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
 import com.ps.domain.model.ActorDetailModel
 import com.ps.presentation.R
 
-@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun DetailScreen(detail: ActorDetailModel) {
     Column(
@@ -33,7 +31,7 @@ fun DetailScreen(detail: ActorDetailModel) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val url = detail.imageUrl
-        val painter = rememberImagePainter(data = url)
+        val painter = rememberAsyncImagePainter(model = url)
         Image(
             painter = painter,
             contentDescription = "Image ${detail.fullName}",

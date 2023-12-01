@@ -22,8 +22,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.annotation.ExperimentalCoilApi
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
 import com.ps.domain.model.Actor
 import com.ps.presentation.R
 
@@ -38,7 +37,6 @@ fun ActorList(actors: List<Actor>, onItemClick: (Int) -> Unit) {
     }
 }
 
-@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun ActorItem(actor: Actor, onItemClick: (Int) -> Unit) {
     Row(
@@ -49,7 +47,7 @@ fun ActorItem(actor: Actor, onItemClick: (Int) -> Unit) {
             .height(100.dp).clickable{onItemClick.invoke(actor.id)}
     ) {
         val url = actor.imageUrl
-        val painter = rememberImagePainter(data = url)
+        val painter = rememberAsyncImagePainter(model = url)
         Image(
             painter = painter,
             contentDescription = "Image ${actor.fullName}",
