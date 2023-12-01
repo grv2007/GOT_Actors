@@ -1,4 +1,4 @@
-package com.ps.gotactors.view
+package com.ps.presentation.actordetail
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

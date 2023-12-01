@@ -5,7 +5,6 @@ import com.ps.common.utils.Resource
 import com.ps.domain.model.ActorDetailModel
 import com.ps.domain.repository.ActorDetailRepository
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 

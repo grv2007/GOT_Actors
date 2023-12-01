@@ -1,4 +1,4 @@
-package com.ps.gotactors.view
+package com.ps.presentation.actorlist
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -9,8 +9,7 @@ import com.ps.common.utils.MainState
 import com.ps.domain.usecase.GetActorsUseCase
 import com.ps.presentation.intent.MainIntent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.consumeAsFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,15 +18,14 @@ class ActorListViewModel @Inject constructor(
     private val getActorsUseCase: GetActorsUseCase
 ) : ViewModel() {
 
-    val userIntent = Channel<MainIntent>(Channel.UNLIMITED)
+   val userIntent : MutableSharedFlow<MainIntent> = MutableSharedFlow()
     var state = mutableStateOf<MainState<Any>>(MainState.Idle)
-
     init {
         handleIntent()
     }
     private fun handleIntent(){
         viewModelScope.launch {
-            userIntent.consumeAsFlow().collect{ collector ->
+            userIntent.collect{ collector ->
                 when(collector){
                     MainIntent.FetchActors -> fetchActors()
                     else -> {
