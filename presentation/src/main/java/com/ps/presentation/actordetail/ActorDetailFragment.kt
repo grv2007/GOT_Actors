@@ -33,12 +33,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import coil.compose.rememberImagePainter
+import com.ps.common.utils.MainState
 import com.ps.domain.model.ActorDetailModel
 import com.ps.gotactors.view.ActorDetailViewModel
 import com.ps.presentation.R
 import com.ps.presentation.actorlist.ActorListFragment
-import com.ps.presentation.view.MainIntent
-import com.ps.presentation.view.MainState
+import com.ps.presentation.intent.MainIntent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -72,7 +72,7 @@ class ActorDetailFragment : Fragment() {
     fun MainScreen(vm: ActorDetailViewModel) {
         when (val state = vm.state.value) {
             is MainState.Loading -> LoadingScreen()
-            is MainState.Success -> DetailScreen(detail = (state.output as ActorDetailModel))
+            is MainState.Success -> DetailScreen(detail = state.output as ActorDetailModel)
             else -> ErrorScreen()
         }
     }

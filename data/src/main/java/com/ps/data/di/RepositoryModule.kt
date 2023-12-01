@@ -1,10 +1,12 @@
 package com.ps.data.di
 
+import com.ps.data.mapper.ActorDetailDomainModelMapper
+import com.ps.data.mapper.ActorsDomainModelMapper
 import com.ps.data.remote.datasource.DataSource
-import com.ps.data.repository.ActorDetailRepository
 import com.ps.data.repository.ActorDetailRepositoryImpl
-import com.ps.data.repository.ActorsRepository
 import com.ps.data.repository.ActorsRepositoryImpl
+import com.ps.domain.repository.ActorDetailRepository
+import com.ps.domain.repository.ActorsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,16 +19,20 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideActorsRepository(
-        dataSource: DataSource
+        dataSource: DataSource,
+        actorsMapper: ActorsDomainModelMapper
     ): ActorsRepository = ActorsRepositoryImpl(
-        dataSource
+        dataSource,
+        actorsMapper
     )
 
     @Singleton
     @Provides
     fun provideActorDetailRepository(
-        dataSource: DataSource
+        dataSource: DataSource,
+        actorDetailMapper: ActorDetailDomainModelMapper
     ): ActorDetailRepository = ActorDetailRepositoryImpl(
-        dataSource
+        dataSource,
+        actorDetailMapper
     )
 }

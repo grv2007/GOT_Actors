@@ -43,12 +43,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import coil.compose.rememberImagePainter
+import com.ps.common.utils.MainState
 import com.ps.domain.model.Actor
 import com.ps.domain.model.ActorsModel
 import com.ps.gotactors.view.ActorListViewModel
 import com.ps.presentation.R
-import com.ps.presentation.view.MainIntent
-import com.ps.presentation.view.MainState
+import com.ps.presentation.intent.MainIntent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

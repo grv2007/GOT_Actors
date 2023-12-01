@@ -1,4 +1,4 @@
-package com.ps.presentation.view
+package com.ps.presentation.intent
 
 sealed class MainIntent {
     object FetchActors : MainIntent()

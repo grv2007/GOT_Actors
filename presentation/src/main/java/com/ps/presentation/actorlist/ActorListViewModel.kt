@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ps.common.extensions.onFailure
 import com.ps.common.extensions.onSuccess
+import com.ps.common.utils.MainState
 import com.ps.domain.usecase.GetActorsUseCase
-import com.ps.presentation.view.MainIntent
-import com.ps.presentation.view.MainState
+import com.ps.presentation.intent.MainIntent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.consumeAsFlow

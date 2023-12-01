@@ -1,4 +1,4 @@
-package com.ps.presentation.view
+package com.ps.common.utils
 
 sealed class MainState <out T : Any> {
     object Idle: MainState<Nothing>()
