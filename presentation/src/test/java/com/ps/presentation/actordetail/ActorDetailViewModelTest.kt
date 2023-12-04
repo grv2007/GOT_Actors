@@ -1,10 +1,9 @@
 package com.ps.presentation.actordetail;
 
-import com.product.common.utils.MainCoroutineRule
-import com.product.common.utils.MainDispatcherRule
 import com.ps.common.utils.MainState
 import com.ps.common.utils.Resource
 import com.ps.domain.usecase.GetActorDetailUseCase
+import com.ps.presentation.MainDispatcherRule
 import com.ps.presentation.TestObject
 import com.ps.presentation.intent.MainIntent
 import io.mockk.coEvery
@@ -25,10 +24,6 @@ class ActorDetailViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule(testDispatcher)
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    @get:Rule
-    val mainTestCoroutineRule = MainCoroutineRule()
 
     private val getActorDetailUseCase = mockk<GetActorDetailUseCase>()
     private lateinit var viewModel: ActorDetailViewModel

@@ -1,4 +1,4 @@
-package com.product.common.utils
+package com.ps.presentation
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
