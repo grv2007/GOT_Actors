@@ -1,11 +1,9 @@
 package com.ps.presentation.actorlist;
 
-import com.product.common.utils.MainCoroutineRule
-import com.product.common.utils.MainDispatcherRule
 import com.ps.common.utils.MainState
 import com.ps.common.utils.Resource
-import com.ps.domain.model.ActorsModel
 import com.ps.domain.usecase.GetActorsUseCase
+import com.ps.presentation.MainDispatcherRule
 import com.ps.presentation.TestObject.actorsModel
 import com.ps.presentation.intent.MainIntent
 import io.mockk.coEvery
@@ -28,10 +26,6 @@ class ActorListViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule(testDispatcher)
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    @get:Rule
-    val mainTestCoroutineRule = MainCoroutineRule()
 
     private val getActorsUseCase = mockk<GetActorsUseCase>()
     private lateinit var viewModel: ActorListViewModel
