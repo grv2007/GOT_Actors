@@ -47,7 +47,7 @@ class ActorDetailViewModel @Inject constructor(
             getActorDetailUseCase(id).onSuccess {
                 state.value = MainState.Success(it)
             }.onFailure {
-                MainState.Error(it.localizedMessage)
+                state.value = MainState.Error(it.localizedMessage)
             }
         }
     }
