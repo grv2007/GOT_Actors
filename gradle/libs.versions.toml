@@ -1,4 +1,7 @@
 [versions]
+compileSdk = "34"
+minSdk = "24"
+targetSdk = "34"
 agp = "8.1.4"
 coil-compose = "2.4.0"
 extensions = "1.1.1"
@@ -20,6 +23,10 @@ retrofit = "2.9.0"
 mockkAndroid = "1.12.3"
 mockkCore = "1.13.2"
 coroutinesCore = "1.7.2"
+jvmTarget = "1.8"
+kotlinCompilerExtensionVersion = "1.4.3"
+jdkVersion = "8"
+
 
 [libraries]
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
@@ -57,6 +64,6 @@ coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", ve
 com-android-application = { id = "com.android.application", version.ref = "agp" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
 com-android-library = { id = "com.android.library", version.ref = "agp" }
-
+com-google-dagger-hilt-android= { id = "com.google.dagger.hilt.android", version.ref = "hilt-android" }
 [bundles]
 
