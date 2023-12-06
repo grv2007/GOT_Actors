@@ -1,6 +1,5 @@
 package com.ps.data.mapper
 
-import com.ps.common.extensions.ResponseToDomainModelMapper
 import com.ps.data.model.ActorResponse
 import com.ps.domain.model.Actor
 import com.ps.domain.model.ActorsModel

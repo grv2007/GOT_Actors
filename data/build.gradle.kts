@@ -12,7 +12,6 @@ android {
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -41,20 +40,17 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":domain"))
 
-    implementation(libs.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
     testImplementation(libs.mockk.android)
     testImplementation(libs.mockk.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(libs.okhttp.logging.interceptor)
-
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
 }
 
 // Allow references to generated code
