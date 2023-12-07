@@ -60,8 +60,10 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     implementation(libs.coil.compose)
+    implementation(libs.navigation.compose)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.material3)
 
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)

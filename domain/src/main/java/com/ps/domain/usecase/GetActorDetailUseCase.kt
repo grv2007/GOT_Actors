@@ -11,10 +11,9 @@ import javax.inject.Inject
 class GetActorDetailUseCase @Inject constructor(
     private val getActorDetailRepository: ActorDetailRepository,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
-)  {
-    suspend operator fun invoke(id: Int): Resource<ActorDetailModel> {
-        return withContext(dispatcher) {
+) {
+    suspend operator fun invoke(id: Int) =
+        withContext(dispatcher) {
             getActorDetailRepository.getActorDetail(id)
         }
-    }
 }

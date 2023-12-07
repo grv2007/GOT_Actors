@@ -1,4 +1,4 @@
-package com.ps.presentation.actorlist.component
+package com.ps.presentation.ui.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,15 +13,12 @@ import androidx.compose.ui.res.painterResource
 import com.ps.presentation.R
 
 @Composable
-fun IdleScreen(onButtonClick: () -> Unit) {
-    Box(modifier = Modifier.fillMaxSize().paint(
-        // Replace with your image id
-        painterResource(id = R.drawable.splash_bg),
-        contentScale = ContentScale.FillBounds),
+fun ButtonScreen(text:String, onButtonClick: () -> Unit) {
+    Box(modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Button(onClick = onButtonClick) {
-            Text(text = "Fetch Actors")
+            Text(text = text)
         }
     }
 }

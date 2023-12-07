@@ -1,6 +1,7 @@
-package com.ps.presentation.actordetail.component
+package com.ps.presentation.actordetail.ui.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.ps.domain.model.ActorDetailModel
 import com.ps.presentation.R
+import com.ps.presentation.ui.component.CardImage
 
 @Composable
 fun DetailScreen(detail: ActorDetailModel) {
@@ -32,11 +34,10 @@ fun DetailScreen(detail: ActorDetailModel) {
     ) {
         val url = detail.imageUrl
         val painter = rememberAsyncImagePainter(model = url)
-        Image(
+        CardImage(
             painter = painter,
-            contentDescription = "Image ${detail.fullName}",
-            modifier = Modifier.size(300.dp),
-            contentScale = ContentScale.FillBounds
+            contentDescription = detail.fullName,
+            size = 300
         )
         Text(
             modifier = Modifier
@@ -60,9 +61,10 @@ fun DetailRow(name: String, value: String) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 50.dp)
+            .padding(horizontal = 50.dp, vertical = 10.dp)
+            .background(colorResource(id = R.color.purple_100))
     ) {
-        Column(modifier = Modifier.weight(1F)) {
+        Column(modifier = Modifier.weight(1F).padding(10.dp)) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = name,
@@ -72,7 +74,7 @@ fun DetailRow(name: String, value: String) {
                 textAlign = TextAlign.Start
             )
         }
-        Column(modifier = Modifier.weight(1F)) {
+        Column(modifier = Modifier.weight(1F).padding(10.dp)) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = value,
