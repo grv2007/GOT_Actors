@@ -1,12 +1,13 @@
-package com.ps.presentation.actorlist;
+package com.ps.presentation.feature.actorlist
 
-import com.ps.common.utils.MainState
-import com.ps.common.utils.Resource
+
 import com.ps.domain.usecase.GetActorsUseCase
+import com.ps.domain.utils.Resource
 import com.ps.presentation.MainDispatcherRule
 import com.ps.presentation.TestObject.actorsModel
 import com.ps.presentation.features.actorlist.ActorListViewModel
-import com.ps.presentation.intent.MainIntent
+import com.ps.presentation.intent.UiIntent
+import com.ps.presentation.state.UiState
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -39,20 +40,20 @@ class ActorListViewModelTest {
     @Test
     fun `FetchActors emits success event`() = runTest {
         coEvery { getActorsUseCase() } returns Resource.Success(actorsModel)
-        assertTrue(viewModel.state.value is MainState.Idle)
-        viewModel.userIntent.emit(MainIntent.FetchActors)
+        assertTrue(viewModel.state.value is UiState.Idle)
+        viewModel.userIntent.emit(UiIntent.FetchActors)
         delay(1000)
-        assertTrue(viewModel.state.value is MainState.Success)
-        assertEquals((viewModel.state.value as MainState.Success).output, actorsModel)
+        assertTrue(viewModel.state.value is UiState.Success)
+        assertEquals((viewModel.state.value as UiState.Success).output, actorsModel)
     }
 
     @Test
     fun `FetchActors emits failure event`() = runTest {
         coEvery { getActorsUseCase() } returns Resource.Failure(IOException())
-        assertTrue(viewModel.state.value is MainState.Idle)
-        viewModel.userIntent.emit(MainIntent.FetchActors)
+        assertTrue(viewModel.state.value is UiState.Idle)
+        viewModel.userIntent.emit(UiIntent.FetchActors)
         delay(1000)
-        assertTrue(viewModel.state.value is MainState.Error)
+        assertTrue(viewModel.state.value is UiState.Error)
     }
 
 }

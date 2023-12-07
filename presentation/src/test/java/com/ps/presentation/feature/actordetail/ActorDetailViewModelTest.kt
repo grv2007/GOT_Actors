@@ -1,12 +1,13 @@
-package com.ps.presentation.actordetail;
+package com.ps.presentation.feature.actordetail
 
-import com.ps.common.utils.MainState
-import com.ps.common.utils.Resource
+
 import com.ps.domain.usecase.GetActorDetailUseCase
+import com.ps.domain.utils.Resource
 import com.ps.presentation.MainDispatcherRule
 import com.ps.presentation.TestObject
 import com.ps.presentation.features.actorlist.actordetail.ActorDetailViewModel
-import com.ps.presentation.intent.MainIntent
+import com.ps.presentation.intent.UiIntent
+import com.ps.presentation.state.UiState
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -37,12 +38,12 @@ class ActorDetailViewModelTest {
     @Test
     fun `FetchActorDetail emits success event`() = runTest {
         coEvery { getActorDetailUseCase(1) } returns Resource.Success(TestObject.actorDetailModel)
-        Assert.assertTrue(viewModel.state.value is MainState.Idle)
-        viewModel.userIntent.send(MainIntent.FetchActorDetail(1))
+        Assert.assertTrue(viewModel.state.value is UiState.Idle)
+        viewModel.userIntent.send(UiIntent.FetchActorDetail(1))
         delay(1000)
-        Assert.assertTrue(viewModel.state.value is MainState.Success)
+        Assert.assertTrue(viewModel.state.value is UiState.Success)
         Assert.assertEquals(
-            (viewModel.state.value as MainState.Success).output,
+            (viewModel.state.value as UiState.Success).output,
             TestObject.actorDetailModel
         )
     }
@@ -50,10 +51,10 @@ class ActorDetailViewModelTest {
     @Test
     fun `FetchActorDetail emits failure event`() = runTest {
         coEvery { getActorDetailUseCase(1) } returns Resource.Failure(IOException())
-        Assert.assertTrue(viewModel.state.value is MainState.Idle)
-        viewModel.userIntent.send(MainIntent.FetchActorDetail(1))
+        Assert.assertTrue(viewModel.state.value is UiState.Idle)
+        viewModel.userIntent.send(UiIntent.FetchActorDetail(1))
         delay(1000)
-        Assert.assertTrue(viewModel.state.value is MainState.Error)
+        Assert.assertTrue(viewModel.state.value is UiState.Error)
     }
 
 }

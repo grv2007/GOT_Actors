@@ -32,7 +32,7 @@ import com.ps.presentation.navigation.AppNavHost
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(actorListViewModel: ActorListViewModel, actorDetailViewModel: ActorDetailViewModel) {
+fun MainScreen() {
     val toolbarTitle = remember { mutableStateOf("") }
     val secondaryScreenHeader = remember { mutableStateOf(false) }
     val navHostController: NavHostController = rememberNavController()
@@ -76,8 +76,6 @@ fun MainScreen(actorListViewModel: ActorListViewModel, actorDetailViewModel: Act
             ) {
                 AppNavHost(
                     navHostController = navHostController,
-                    actorListViewModel = actorListViewModel,
-                    actorDetailViewModel = actorDetailViewModel,
                     toolBarTitle = toolbarTitle,
                     secondaryScreenHeader = secondaryScreenHeader,
                 )

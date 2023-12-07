@@ -45,7 +45,6 @@ kotlin {
 }
 dependencies {
     implementation(project( ":domain"))
-
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
@@ -62,6 +61,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.material3)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
