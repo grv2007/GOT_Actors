@@ -1,11 +1,11 @@
-package com.ps.presentation.actordetail.ui
+package com.ps.presentation.features.actorlist.actordetail.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import com.ps.common.utils.MainState
+
 import com.ps.domain.model.ActorDetailModel
-import com.ps.presentation.actordetail.ActorDetailViewModel
-import com.ps.presentation.actordetail.ui.component.DetailScreen
+import com.ps.presentation.features.actorlist.actordetail.ActorDetailViewModel
+import com.ps.presentation.features.actorlist.actordetail.ui.component.DetailScreen
+import com.ps.presentation.state.MainState
 import com.ps.presentation.ui.component.ErrorScreen
 import com.ps.presentation.ui.component.LoadingScreen
 

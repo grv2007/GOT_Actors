@@ -1,6 +1,7 @@
-package com.ps.common.extensions
+package com.ps.domain.extensions
 
-import com.ps.common.utils.Resource
+
+import com.ps.domain.utils.Resource
 import java.io.IOException
 
 inline fun <T> Resource<T>.onSuccess(action: (value: T) -> Unit): Resource<T> {

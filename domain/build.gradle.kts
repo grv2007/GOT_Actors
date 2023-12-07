@@ -36,7 +36,6 @@ kotlin {
     jvmToolchain(libs.versions.jdkVersion.get().toInt())
 }
 dependencies {
-    implementation(project( ":common"))
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 

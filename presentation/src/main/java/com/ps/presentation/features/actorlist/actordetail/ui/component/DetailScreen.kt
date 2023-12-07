@@ -1,4 +1,4 @@
-package com.ps.presentation.actordetail.ui.component
+package com.ps.presentation.features.actorlist.actordetail.ui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

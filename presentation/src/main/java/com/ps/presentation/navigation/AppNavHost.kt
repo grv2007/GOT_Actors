@@ -11,10 +11,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.ps.presentation.R
-import com.ps.presentation.actordetail.ActorDetailViewModel
-import com.ps.presentation.actordetail.ui.ActorDetailMainScreen
-import com.ps.presentation.actorlist.ActorListViewModel
-import com.ps.presentation.actorlist.ui.ActorListMainScreen
+import com.ps.presentation.features.actorlist.actordetail.ActorDetailViewModel
+import com.ps.presentation.features.actorlist.actordetail.ui.ActorDetailMainScreen
+import com.ps.presentation.features.actorlist.ActorListViewModel
+import com.ps.presentation.features.actorlist.ui.ActorListMainScreen
 import com.ps.presentation.intent.MainIntent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

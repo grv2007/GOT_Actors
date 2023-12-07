@@ -5,6 +5,7 @@ import com.ps.common.utils.Resource
 import com.ps.domain.usecase.GetActorsUseCase
 import com.ps.presentation.MainDispatcherRule
 import com.ps.presentation.TestObject.actorsModel
+import com.ps.presentation.features.actorlist.ActorListViewModel
 import com.ps.presentation.intent.MainIntent
 import io.mockk.coEvery
 import io.mockk.mockk

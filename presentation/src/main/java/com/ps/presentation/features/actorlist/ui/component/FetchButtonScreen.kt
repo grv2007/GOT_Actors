@@ -1,4 +1,4 @@
-package com.ps.presentation.actorlist.ui.component
+package com.ps.presentation.features.actorlist.ui.component
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource

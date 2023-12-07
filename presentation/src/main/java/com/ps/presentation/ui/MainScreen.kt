@@ -26,8 +26,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.ps.presentation.R
-import com.ps.presentation.actordetail.ActorDetailViewModel
-import com.ps.presentation.actorlist.ActorListViewModel
+import com.ps.presentation.features.actorlist.actordetail.ActorDetailViewModel
+import com.ps.presentation.features.actorlist.ActorListViewModel
 import com.ps.presentation.navigation.AppNavHost
 
 @OptIn(ExperimentalMaterial3Api::class)

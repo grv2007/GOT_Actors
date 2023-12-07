@@ -1,4 +1,4 @@
-package com.ps.common.di
+package com.ps.domain.di
 
 import dagger.Module
 import dagger.Provides

@@ -3,7 +3,7 @@ package com.ps.data.repository
 import com.ps.common.utils.Resource
 import com.ps.data.TestObject
 import com.ps.data.mapper.ActorDetailDomainModelMapper
-import com.ps.data.model.ActorResponse
+import com.ps.data.dto.ActorDto
 import com.ps.data.remote.datasource.DataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -15,7 +15,6 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import retrofit2.Response
-import java.io.IOException
 
 class ActorDetailRepositoryImplTest {
     private val dataSource = mockk<DataSource>()
@@ -28,9 +27,9 @@ class ActorDetailRepositoryImplTest {
 
     @Test
     fun `getActorDetail returns success`()= runBlocking {
-        val mockResponse = mockk<Response<ActorResponse>>()
+        val mockResponse = mockk<Response<ActorDto>>()
         every { mockResponse.isSuccessful } returns true
-        every { mockResponse.body() } returns TestObject.actorResponse
+        every { mockResponse.body() } returns TestObject.actorDto
         coEvery { dataSource.getActorDetail(any()) } returns mockResponse
 
         val expectedResource = Resource.Success(TestObject.actorDetailModel)
@@ -44,9 +43,9 @@ class ActorDetailRepositoryImplTest {
 
     @Test
     fun `getActorDetail returns failure`()= runBlocking {
-        val mockResponse = mockk<Response<ActorResponse>>()
+        val mockResponse = mockk<Response<ActorDto>>()
         every { mockResponse.isSuccessful } returns false
-        every { mockResponse.body() } returns TestObject.actorResponse
+        every { mockResponse.body() } returns TestObject.actorDto
         coEvery { dataSource.getActorDetail(any()) } returns mockResponse
 
         val result = repository.getActorDetail(1)

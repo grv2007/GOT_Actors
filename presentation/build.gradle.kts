@@ -44,8 +44,6 @@ kotlin {
     jvmToolchain(libs.versions.jdkVersion.get().toInt())
 }
 dependencies {
-
-    implementation(project( ":common"))
     implementation(project( ":domain"))
 
     implementation(libs.core.ktx)

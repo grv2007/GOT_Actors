@@ -1,4 +1,4 @@
-package com.ps.common.utils
+package com.ps.domain.utils
 
 import java.io.IOException
 

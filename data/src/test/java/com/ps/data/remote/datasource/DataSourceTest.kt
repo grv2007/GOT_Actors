@@ -1,7 +1,7 @@
 package com.ps.data.remote.datasource
 
 
-import com.ps.data.model.ActorResponse
+import com.ps.data.dto.ActorDto
 import com.ps.data.remote.Api
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -24,7 +24,7 @@ class DataSourceTest {
 
     @Test
     fun `getActors returns expected response`() = runBlocking {
-        val expectedResponse = mockk<Response<List<ActorResponse>>>()
+        val expectedResponse = mockk<Response<List<ActorDto>>>()
 
         coEvery { api.getActors() } returns expectedResponse
 
@@ -35,7 +35,7 @@ class DataSourceTest {
 
     @Test
     fun `getActorDetail returns expected response`() = runBlocking {
-        val expectedResponse = mockk<Response<ActorResponse>>()
+        val expectedResponse = mockk<Response<ActorDto>>()
 
         coEvery { api.getActorDetail(1) } returns expectedResponse
 

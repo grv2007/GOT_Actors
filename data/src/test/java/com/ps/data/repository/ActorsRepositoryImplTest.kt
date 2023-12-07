@@ -2,9 +2,8 @@ package com.ps.data.repository
 
 import com.ps.common.utils.Resource
 import com.ps.data.TestObject
-import com.ps.data.mapper.ActorDetailDomainModelMapper
 import com.ps.data.mapper.ActorsDomainModelMapper
-import com.ps.data.model.ActorResponse
+import com.ps.data.dto.ActorDto
 import com.ps.data.remote.datasource.DataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -28,9 +27,9 @@ class ActorsRepositoryImplTest {
 
     @Test
     fun `getActorDetail returns success`()= runBlocking {
-        val mockResponse = mockk<Response<List<ActorResponse>>>()
+        val mockResponse = mockk<Response<List<ActorDto>>>()
         every { mockResponse.isSuccessful } returns true
-        every { mockResponse.body() } returns listOf(TestObject.actorResponse)
+        every { mockResponse.body() } returns listOf(TestObject.actorDto)
         coEvery { dataSource.getActors() } returns mockResponse
 
         val expectedResource = Resource.Success(TestObject.actorsModel)
@@ -45,9 +44,9 @@ class ActorsRepositoryImplTest {
 
     @Test
     fun `getActorDetail returns failur`()= runBlocking {
-        val mockResponse = mockk<Response<List<ActorResponse>>>()
+        val mockResponse = mockk<Response<List<ActorDto>>>()
         every { mockResponse.isSuccessful } returns false
-        every { mockResponse.body() } returns listOf(TestObject.actorResponse)
+        every { mockResponse.body() } returns listOf(TestObject.actorDto)
         coEvery { dataSource.getActors() } returns mockResponse
 
         val result = repository.getActors()

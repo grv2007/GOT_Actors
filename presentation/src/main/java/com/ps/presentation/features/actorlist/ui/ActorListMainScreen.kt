@@ -1,13 +1,13 @@
-package com.ps.presentation.actorlist.ui
+package com.ps.presentation.features.actorlist.ui
 
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import com.ps.common.utils.MainState
 import com.ps.domain.model.ActorsModel
-import com.ps.presentation.actorlist.ActorListViewModel
-import com.ps.presentation.actorlist.ui.component.ActorList
-import com.ps.presentation.actorlist.ui.component.FetchButtonScreen
+import com.ps.presentation.features.actorlist.ActorListViewModel
+import com.ps.presentation.features.actorlist.ui.component.ActorList
+import com.ps.presentation.features.actorlist.ui.component.FetchButtonScreen
+import com.ps.presentation.state.MainState
 import com.ps.presentation.ui.component.LoadingScreen
 
 @Composable

@@ -15,7 +15,7 @@ class ActorsDomainModelMapperTest {
     }
     @Test
     fun `ActorsDomainModelMapper converts List of ActorResponse to ActorsModel`() {
-        val data = mapper.mapToDomainModel(listOf( TestObject.actorResponse)).list[0]
+        val data = mapper.mapToDomainModel(listOf( TestObject.actorDto)).list[0]
         Assert.assertEquals(data.id, TestObject.ID)
         Assert.assertEquals(data.fullName, TestObject.FULL_NAME)
         Assert.assertEquals(data.family, TestObject.FAMILY)

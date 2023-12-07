@@ -1,21 +1,18 @@
 package com.ps.data.mapper
 
-import com.ps.data.model.ActorResponse
+import com.ps.data.dto.ActorDto
 import com.ps.domain.model.ActorDetailModel
 import javax.inject.Inject
 
 class ActorDetailDomainModelMapper @Inject constructor() :
-    ResponseToDomainModelMapper<ActorResponse, ActorDetailModel> {
-    override fun mapToDomainModel(responseModel: ActorResponse?): ActorDetailModel {
-        val actorDetailResponse = requireNotNull(responseModel)
-        return ActorDetailModel(
-            id = actorDetailResponse.id,
-            firstName = actorDetailResponse.firstName,
-            lastName = actorDetailResponse.lastName,
-            fullName = actorDetailResponse.fullName,
-            title = actorDetailResponse.title,
-            family = actorDetailResponse.family,
-            imageUrl = actorDetailResponse.imageUrl
+    DtoToDomainModelMapper<ActorDto, ActorDetailModel> {
+    override fun mapToDomainModel(dto: ActorDto) =  ActorDetailModel(
+            id = dto.id ?: 0,
+            firstName = dto.firstName?: "",
+            lastName = dto.lastName?: "",
+            fullName = dto.fullName?: "",
+            title = dto.title?: "",
+            family = dto.family?: "",
+            imageUrl = dto.imageUrl?: ""
         )
-    }
 }

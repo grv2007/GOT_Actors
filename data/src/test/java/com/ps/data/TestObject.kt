@@ -1,6 +1,6 @@
 package com.ps.data
 
-import com.ps.data.model.ActorResponse
+import com.ps.data.dto.ActorDto
 import com.ps.domain.model.Actor
 import com.ps.domain.model.ActorDetailModel
 import com.ps.domain.model.ActorsModel
@@ -15,7 +15,7 @@ object TestObject {
     const val IMAGE = "image.jpg"
     const val IMAGE_URL = "url/image.jpg"
 
-    val actorResponse = ActorResponse(
+    val actorDto = ActorDto(
         id = ID,
         firstName = FIRST_NAME,
         lastName = LAST_NAME,

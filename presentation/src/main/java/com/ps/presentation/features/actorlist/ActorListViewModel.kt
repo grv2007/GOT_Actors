@@ -1,13 +1,13 @@
-package com.ps.presentation.actorlist
+package com.ps.presentation.features.actorlist
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ps.common.extensions.onFailure
-import com.ps.common.extensions.onSuccess
-import com.ps.common.utils.MainState
+import com.ps.domain.extensions.onFailure
+import com.ps.domain.extensions.onSuccess
 import com.ps.domain.usecase.GetActorsUseCase
 import com.ps.presentation.intent.MainIntent
+import com.ps.presentation.state.MainState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
