@@ -9,11 +9,6 @@ import javax.inject.Inject
 internal class DataSourceImpl @Inject constructor(
     private val api: Api
 ) : DataSource {
-    override suspend fun getActors(): Resource<List<ActorDto>> {
-        return handleAPICall {api.getActors()}
-    }
-
-    override suspend fun getActorDetail(id: Int): Resource<ActorDto> {
-        return handleAPICall {api.getActorDetail(id)}
-    }
+    override suspend fun getActors() = handleAPICall{api.getActors()}
+    override suspend fun getActorDetail(id: Int) = handleAPICall{api.getActorDetail(id)}
 }

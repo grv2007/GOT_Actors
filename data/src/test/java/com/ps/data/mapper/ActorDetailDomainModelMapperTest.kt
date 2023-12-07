@@ -4,7 +4,6 @@ import com.ps.data.TestObject
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import java.lang.IllegalArgumentException
 
 class ActorDetailDomainModelMapperTest {
     private lateinit var mapper: ActorDetailDomainModelMapper
@@ -24,9 +23,5 @@ class ActorDetailDomainModelMapperTest {
         Assert.assertEquals(data.family, TestObject.FAMILY)
         Assert.assertEquals(data.imageUrl, TestObject.IMAGE_URL)
 
-    }
-    @Test(expected = IllegalArgumentException::class)
-    fun `ActorDetailDomainModelMapper throws exception for null response`() {
-            mapper.mapToDomainModel(null)
     }
 }

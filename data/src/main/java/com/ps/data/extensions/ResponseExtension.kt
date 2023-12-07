@@ -21,13 +21,11 @@ suspend fun <T : Any> handleAPICall(
 }
 
 private fun <T : Any> Response<T>.handleAPIResponse(): Resource<T> {
-    val responseBody = body() as T
     if (isSuccess()) {
+        val responseBody = body() as T
         return Resource.Success(responseBody)
     }
-    return Resource.Failure(
-        IOException()
-    )
+    return Resource.Failure(IOException())
 }
 
 private fun <T : Any> Response<T>.isSuccess(): Boolean = isSuccessful
