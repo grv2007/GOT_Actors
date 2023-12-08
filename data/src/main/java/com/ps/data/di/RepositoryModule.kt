@@ -10,13 +10,11 @@ import com.ps.domain.repository.ActorsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import dagger.hilt.android.components.ViewModelComponent
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 object RepositoryModule {
-    @Singleton
     @Provides
     fun provideActorsRepository(
         dataSource: DataSource,
@@ -26,7 +24,6 @@ object RepositoryModule {
         actorsMapper
     )
 
-    @Singleton
     @Provides
     fun provideActorDetailRepository(
         dataSource: DataSource,

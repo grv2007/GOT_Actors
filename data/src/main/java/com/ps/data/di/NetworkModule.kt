@@ -1,10 +1,8 @@
 package com.ps.data.di
 
+
 import android.os.Build
-import com.ps.common.utils.Constants.Companion.BASE_URL
 import com.ps.data.remote.Api
-
-
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +17,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object  NetworkModule {
-
+    private const val BASE_URL = "https://thronesapi.com/api/v2/"
     @Singleton
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()

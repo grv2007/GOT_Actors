@@ -1,7 +1,5 @@
 package com.ps.domain.model
 
-import com.ps.common.model.DomainModel
-
 data class ActorsModel(
     val list: List<Actor>
 ): DomainModel

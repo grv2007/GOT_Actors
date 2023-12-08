@@ -1,8 +1,8 @@
 package com.ps.domain.usecase
 
-import com.ps.common.utils.Resource
 import com.ps.domain.model.ActorsModel
 import com.ps.domain.repository.ActorsRepository
+import com.ps.domain.utils.Resource
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers

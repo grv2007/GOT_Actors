@@ -15,7 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "GOT Actors"
 include(":app")
-include(":common")
 include(":data")
 include(":domain")
 include(":presentation")

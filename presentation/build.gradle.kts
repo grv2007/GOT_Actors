@@ -3,17 +3,16 @@ plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     kotlin("kapt")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.com.google.dagger.hilt.android)
 }
 
 android {
     namespace = "com.ps.presentation"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.minSdk.get().toInt()
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -31,24 +30,21 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
     buildFeatures {
         compose = true
         viewBinding = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get()
     }
 }
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(libs.versions.jdkVersion.get().toInt())
 }
 dependencies {
-
-    implementation(project( ":common"))
     implementation(project( ":domain"))
-
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
@@ -58,26 +54,28 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.coil.compose)
+    implementation(libs.navigation.compose)
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.material3)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+
     testImplementation(libs.mockk.android)
     testImplementation(libs.mockk.core)
     testImplementation(libs.junit)
     testImplementation(libs.coroutines.test)
     testImplementation(libs.converter.gson)
     androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
-
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-    implementation(libs.coil.compose)
-    implementation(libs.appcompat)
-    implementation(libs.material)
-
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
 
 }
 
