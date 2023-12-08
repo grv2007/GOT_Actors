@@ -13,7 +13,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CardImage(
+fun CustomCardImage(
     painter: Painter,
     contentDescription: String?,
     size: Int

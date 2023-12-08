@@ -1,4 +1,4 @@
-package com.ps.presentation.ui.component
+package com.ps.presentation.ui.views
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,7 +12,7 @@ import com.ps.presentation.R
 
 
 @Composable
-fun ErrorScreen() {
+fun Error() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center

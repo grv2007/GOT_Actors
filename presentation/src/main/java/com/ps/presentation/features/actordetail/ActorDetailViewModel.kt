@@ -1,4 +1,4 @@
-package com.ps.presentation.features.actorlist.actordetail
+package com.ps.presentation.features.actordetail
 
 
 import androidx.compose.runtime.State

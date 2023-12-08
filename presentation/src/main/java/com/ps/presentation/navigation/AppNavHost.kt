@@ -9,8 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.ps.presentation.R
-import com.ps.presentation.features.actorlist.actordetail.ui.ActorDetailMainScreen
-import com.ps.presentation.features.actorlist.ui.ActorListMainScreen
+import com.ps.presentation.features.actordetail.ui.ActorDetailScreen
+import com.ps.presentation.features.actorlist.ui.ActorListScreen
 
 @Composable
 fun AppNavHost(
@@ -18,30 +18,29 @@ fun AppNavHost(
     toolBarTitle: MutableState<String>,
     secondaryScreenHeader: MutableState<Boolean>,
 ) {
-    NavHost(navController = navHostController, startDestination = Route.ACTOR_LIST_SCREEN.name) {
-        composable(route = Route.ACTOR_LIST_SCREEN.name) {
+    NavHost(navController = navHostController, startDestination = Route.ACTOR_LIST_SCREEN.getRoute()) {
+        composable(route = Route.ACTOR_LIST_SCREEN.getRoute()) {
             toolBarTitle.value = stringResource(id = R.string.title_actor_list)
             secondaryScreenHeader.value = false
             val onItemClick: (Int) -> Unit = { id ->
-                navHostController.navigate("${Route.ACTOR_LIST_SCREEN.name}/$id")
+                navHostController.navigate(Route.ACTOR_DETAIL_SCREEN.getRoute(id))
             }
-            ActorListMainScreen(onItemClick = onItemClick)
+            ActorListScreen(onItemClick = onItemClick)
 
         }
         composable(
-            route = "${Route.ACTOR_LIST_SCREEN.name}/{${SELECTED_ACTOR_ID}}",
+            route = Route.ACTOR_DETAIL_SCREEN.getRoutePlaceHolder(),
             arguments = listOf(
                 navArgument(SELECTED_ACTOR_ID) {
                     type = NavType.IntType
                 }
             )
         ) {
-
             toolBarTitle.value = stringResource(id = R.string.title_actor_details)
             secondaryScreenHeader.value = true
 
             it.arguments?.getInt(SELECTED_ACTOR_ID)?.let { id ->
-                ActorDetailMainScreen(id)
+                ActorDetailScreen(id)
             }
         }
     }

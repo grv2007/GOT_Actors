@@ -1,4 +1,4 @@
-package com.ps.presentation.ui
+package com.ps.presentation.ui.views
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,7 +17,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
@@ -26,13 +25,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.ps.presentation.R
-import com.ps.presentation.features.actorlist.actordetail.ActorDetailViewModel
-import com.ps.presentation.features.actorlist.ActorListViewModel
 import com.ps.presentation.navigation.AppNavHost
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun AppNavHostWithTopBar() {
     val toolbarTitle = remember { mutableStateOf("") }
     val secondaryScreenHeader = remember { mutableStateOf(false) }
     val navHostController: NavHostController = rememberNavController()

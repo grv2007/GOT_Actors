@@ -6,17 +6,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ps.domain.model.ActorsModel
 import com.ps.presentation.features.actorlist.ActorListViewModel
-import com.ps.presentation.features.actorlist.ui.component.ActorList
-import com.ps.presentation.features.actorlist.ui.component.FetchButtonScreen
+import com.ps.presentation.features.actorlist.ui.views.ActorList
+import com.ps.presentation.features.actorlist.ui.views.FetchButton
 import com.ps.presentation.intent.UiIntent
 import com.ps.presentation.state.UiState
-import com.ps.presentation.ui.component.LoadingScreen
+import com.ps.presentation.ui.views.CenterLoading
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun ActorListMainScreen(
+fun ActorListScreen(
     onItemClick: (Int) -> Unit
 ) {
     val actorListViewModel = hiltViewModel<ActorListViewModel>()
@@ -26,14 +26,14 @@ fun ActorListMainScreen(
         }
     }
     when (val state = actorListViewModel.state.value) {
-        is UiState.Idle ->  FetchButtonScreen(onButtonClick = onButtonClick)
-        is UiState.Loading -> LoadingScreen()
+        is UiState.Idle ->  FetchButton(onButtonClick = onButtonClick)
+        is UiState.Loading -> CenterLoading()
         is UiState.Success -> ActorList(
             actors = (state.output as ActorsModel).list,
             onItemClick = onItemClick
         )
         is UiState.Error -> {
-            FetchButtonScreen(onButtonClick = onButtonClick)
+            FetchButton(onButtonClick = onButtonClick)
             Toast.makeText(LocalContext.current, state.error, Toast.LENGTH_SHORT).show()
         }
     }

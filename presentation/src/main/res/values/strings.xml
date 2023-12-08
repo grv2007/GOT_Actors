@@ -3,4 +3,8 @@
     <string name="title_actor_details">Details</string>
     <string name="button_fetch_actors">Fetch Actors</string>
     <string name="error">Something went wrong!</string>
+    <string name="first_name">First Name:</string>
+    <string name="last_name">Last Name:</string>
+    <string name="title">Title:</string>
+    <string name="family">Family:</string>
 </resources>
