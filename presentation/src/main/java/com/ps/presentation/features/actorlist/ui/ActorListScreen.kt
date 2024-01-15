@@ -21,9 +21,7 @@ fun ActorListScreen(
 ) {
     val actorListViewModel = hiltViewModel<ActorListViewModel>()
     val onButtonClick: () -> Unit = {
-        CoroutineScope(Dispatchers.Default).launch {
-            actorListViewModel.userIntent.emit(UiIntent.FetchActors)
-        }
+       actorListViewModel.sendIntent(UiIntent.FetchActors)
     }
     when (val state = actorListViewModel.state.value) {
         is UiState.Idle ->  FetchButton(onButtonClick = onButtonClick)

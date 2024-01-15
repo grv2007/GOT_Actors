@@ -11,8 +11,6 @@ import com.ps.presentation.state.UiState
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
@@ -21,11 +19,9 @@ import org.junit.Test
 import java.io.IOException
 
 class ActorDetailViewModelTest {
-    private val testDispatcher = StandardTestDispatcher()
-
     @OptIn(ExperimentalCoroutinesApi::class)
     @get:Rule
-    val mainDispatcherRule = MainDispatcherRule(testDispatcher)
+    val mainDispatcherRule = MainDispatcherRule()
 
     private val getActorDetailUseCase = mockk<GetActorDetailUseCase>()
     private lateinit var viewModel: ActorDetailViewModel
@@ -40,7 +36,6 @@ class ActorDetailViewModelTest {
         coEvery { getActorDetailUseCase(1) } returns Resource.Success(TestObject.actorDetailModel)
         Assert.assertTrue(viewModel.state.value is UiState.Idle)
         viewModel.userIntent.send(UiIntent.FetchActorDetail(1))
-        delay(1000)
         Assert.assertTrue(viewModel.state.value is UiState.Success)
         Assert.assertEquals(
             (viewModel.state.value as UiState.Success).output,
@@ -53,7 +48,6 @@ class ActorDetailViewModelTest {
         coEvery { getActorDetailUseCase(1) } returns Resource.Failure(IOException())
         Assert.assertTrue(viewModel.state.value is UiState.Idle)
         viewModel.userIntent.send(UiIntent.FetchActorDetail(1))
-        delay(1000)
         Assert.assertTrue(viewModel.state.value is UiState.Error)
     }
 

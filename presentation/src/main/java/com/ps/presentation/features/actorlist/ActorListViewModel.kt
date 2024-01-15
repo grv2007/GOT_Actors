@@ -51,4 +51,11 @@ class ActorListViewModel @Inject constructor(
             }
         }
     }
+
+     fun sendIntent(intent: UiIntent) {
+        viewModelScope.launch {
+            userIntent.emit(intent)
+        }
+    }
+
 }
